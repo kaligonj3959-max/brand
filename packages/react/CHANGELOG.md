@@ -1,5 +1,117 @@
 # @primer/react-brand
 
+## 0.67.0
+
+### Minor Changes
+
+- [#1315](https://github.com/primer/brand/pull/1315) [`fae6e70`](https://github.com/primer/brand/commit/fae6e70341c083cbab1f0c585a711be1c605e3c0) Thanks [@rezrah](https://github.com/rezrah)! - Added new `Token` component, which is typically used for showing a collection of related metadata.
+
+  ```tsx
+  <Token as="a" href="#">
+    As a link
+  </Token>
+  <Token>
+    As non-interactive text
+  </Token>
+  ```
+
+  🔗 [See `Token` documentation for more usage examples](https://primer.style/brand/components/Token)
+
+- [#1311](https://github.com/primer/brand/pull/1311) [`fe2589d`](https://github.com/primer/brand/commit/fe2589d560a43e88b9fd528fb703eca5ede86258) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Breaking change: `SectionIntro.Label` no longer forwards props from the `Label` component, such as `size` and `color`.
+
+  - `SectionIntro.Label` now appears as muted text with a green cursor icon for visual parity with `Hero.Label`.
+    - An optional `animate` prop is available to enable streaming cursor effect.
+
+  `Hero.Label` has minor adjustments to line height. Now uses the same `EyebrowText` component as `River`.
+
+- [#1315](https://github.com/primer/brand/pull/1315) [`fae6e70`](https://github.com/primer/brand/commit/fae6e70341c083cbab1f0c585a711be1c605e3c0) Thanks [@rezrah](https://github.com/rezrah)! - - Updated `Icon` with `hasBackground` to use a medium border radius instead of a full radius.
+
+- [#1315](https://github.com/primer/brand/pull/1315) [`fae6e70`](https://github.com/primer/brand/commit/fae6e70341c083cbab1f0c585a711be1c605e3c0) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Breaking changes to the `Card` component.
+
+  - Removed the `torchlight` Card variant. Cards now use the standard appearance in both light and dark mode.
+
+    ```diff
+    - <Card variant="torchlight" />
+    + <Card />
+    ```
+
+  - `Card.Label` now uses `EyebrowText` under the hood, with `default`, `muted`, and `accent` variants. Migrate previous `size` and `color` usage to the closest supported `variant`.
+
+    ```diff
+    - <Card.Label size="200" color="green">Beta</Card.Label>
+    + <Card.Label variant="accent">Beta</Card.Label>
+    ```
+
+  - Added new `ctaVariant` prop with `text`, `arrow`, and `none` options to control how the card's primary action is rendered.
+  - Added `leadingVisual` prop for rendering a logo or brand mark above the card content. Note that `leadingVisual` and `Card.Icon` cannot be used together.
+  - Added `Card.Tokens` for rendering metadata before or after the main copy, with `position="block-start"` and `position="block-end"` options.
+
+- [#1314](https://github.com/primer/brand/pull/1314) [`9783702`](https://github.com/primer/brand/commit/9783702380855bcb2af2984a4c6972e89db0779b) Thanks [@rezrah](https://github.com/rezrah)! - Major updates to `PricingOptions` with new features, layout fixes, and design refinements.
+
+  > [!WARNING]
+  > Breaking changes in this release
+
+  - `PricingOptions.Label` is no longer a wrapper around the `Label` component. It now renders as plain text in a dedicated header row above the pricing columns. Props like `size` and `color` are no longer supported.
+
+  ```diff
+   <PricingOptions.Item>
+  -  <PricingOptions.Label size="medium" color="green">Recommended</PricingOptions.Label>
+  +  <PricingOptions.Label>Recommended</PricingOptions.Label>
+     <PricingOptions.Heading>Pro</PricingOptions.Heading>
+   </PricingOptions.Item>
+  ```
+
+  Other new features:
+
+  - **`infoTooltip` prop on `PricingOptions.FeatureListItem`**: Adds an info icon with tooltip. See [usage example](https://primer.style/brand/components/PricingOptions).
+  - **`PricingOptions.MenuAction` sub-component**: A wrapper for rendering `ActionMenu` inside the actions area. See [With Menu Action story](https://primer.style/brand/storybook?path=/story/components-pricingoptions-features--with-menu-action).
+  - **`PricingOptions.testIds.menuAction`**: `PricingOptions.MenuAction` now exposes a dedicated default test id instead of sharing `PricingOptions__primaryAction`.
+  - **`style` prop on `PricingOptions`** can now be forwarded to the `PricingOptions` root element.
+
+- [#1309](https://github.com/primer/brand/pull/1309) [`fc6cfe9`](https://github.com/primer/brand/commit/fc6cfe98b0f94a2f8a61ed468f1c589f8d0442b9) Thanks [@rezrah](https://github.com/rezrah)! - Added `RiverBreakoutTabs` component, which is designed to aid storytelling sections where multiple related messages need to live in one high-impact module, without requiring users to scroll through several full-width sections.
+
+  Usage example:
+
+  ```tsx
+  <RiverBreakoutTabs>
+    <RiverBreakoutTabs.A11yHeading>Plan, review, and ship with Copilot</RiverBreakoutTabs.A11yHeading>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Plan from your backlog</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Break large issues into practical implementation steps.</Text>
+        <Link href="#">Learn more</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+        <img src="/images/placeholder-1.png" alt="Planning workflow in editor" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+  </RiverBreakoutTabs>
+  ```
+
+  🔗 [See the documentation for more usage examples](https://primer.style/brand/components/RiverBreakoutTabs)
+
+### Patch Changes
+
+- [#1309](https://github.com/primer/brand/pull/1309) [`fc6cfe9`](https://github.com/primer/brand/commit/fc6cfe98b0f94a2f8a61ed468f1c589f8d0442b9) Thanks [@rezrah](https://github.com/rezrah)! - Add a stable `data-video-player-container` hook to the `VideoPlayer` root. This allows you to override the container styles using CSS.
+
+- [#1317](https://github.com/primer/brand/pull/1317) [`4bf692a`](https://github.com/primer/brand/commit/4bf692a4c112da7a5201dc041114e4c887a1c5d9) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fixed `SubNav` accessibility issue where dropdown submenus on large viewports could contain focusable links while marked `aria-hidden`. The collapsed submenu is now made `inert`, removing it from tab order and the accessibility tree without affecting layout or the open/close transition.
+
+- [#1309](https://github.com/primer/brand/pull/1309) [`fc6cfe9`](https://github.com/primer/brand/commit/fc6cfe98b0f94a2f8a61ed468f1c589f8d0442b9) Thanks [@rezrah](https://github.com/rezrah)! - Force `Link` colors to always apply and prevent specificity-based overriding by parents.
+
+- [#1315](https://github.com/primer/brand/pull/1315) [`fae6e70`](https://github.com/primer/brand/commit/fae6e70341c083cbab1f0c585a711be1c605e3c0) Thanks [@rezrah](https://github.com/rezrah)! - Refined the `Card` arrow CTA variant so the revealed label remains decorative, does not block the card-wide link target, and better matches the intended hover and focus motion.
+
+  Also exposed these `ExpandableArrow` CSS variables so its motion can be tuned by parent components:
+
+  ```css
+  --ExpandableArrow-duration: 200ms;
+  --ExpandableArrow-easing: ease;
+  ```
+
+- [#1306](https://github.com/primer/brand/pull/1306) [`3c08fc1`](https://github.com/primer/brand/commit/3c08fc16bd5302953b647f5e9903e1efa1ebfda7) Thanks [@rezrah](https://github.com/rezrah)! - Update `RiverBreakout.Visual` image to appear bottom-aligned when `hasBackground` is set.
+
+- [#1309](https://github.com/primer/brand/pull/1309) [`fc6cfe9`](https://github.com/primer/brand/commit/fc6cfe98b0f94a2f8a61ed468f1c589f8d0442b9) Thanks [@rezrah](https://github.com/rezrah)! - Update `RiverBreakout` gridline tablet appearance to be visually consistent with other gridline components by centering the container and applying side borders at non-wide breakpoints.
+
 ## 0.66.0
 
 ### Minor Changes
